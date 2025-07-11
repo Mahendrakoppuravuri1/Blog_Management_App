@@ -1,8 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -14,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/create", (req, res) => {
-    res.sendFile("C:/Users/MAHENDRA/OneDrive/문서/web_development/Backend/capstone-project/Blog_Application/public/create.html");
+    res.sendFile(path.join(__dirname, "public", "create.html"));
 });
 
 app.post("/submit", (req, res) => {
@@ -34,11 +39,11 @@ app.post("/edit/:id", (req, res) => {
     res.redirect("/");
 });
 
-app.post("/delete/:id",(req,res)=>{
-    const index=req.params.id;
-    posts.splice(index,1);
-    res.render("index.ejs",{
-        posts:posts,
+app.post("/delete/:id", (req, res) => {
+    const index = req.params.id;
+    posts.splice(index, 1);
+    res.render("index.ejs", {
+        posts: posts,
     });
 });
 
