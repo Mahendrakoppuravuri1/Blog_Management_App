@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/create", (req, res) => {
-    res.sendFile("C:/Users/Hai/Documents/web_development/Backend/capstone-project/Blog_Application/public/create.html");
+    res.sendFile("C:/Users/MAHENDRA/OneDrive/문서/web_development/Backend/capstone-project/Blog_Application/public/create.html");
 });
 
 app.post("/submit", (req, res) => {
